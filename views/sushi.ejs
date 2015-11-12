@@ -1,0 +1,55 @@
+<%- contentFor('sushi') %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Your Favourite Sushi</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="container well">
+    <fieldset>
+      <legend>Add your Favourite Sushi</legend>
+      <form action='/sushi' method='post'>
+        <div class="form-group col-md-4">
+          <input name="sushi[sushi_name]" class="form-control" placeholder="Name your Sushi"/>
+        </div>
+        <div class="form-group col-md-4">
+          <input name="sushi[comment]" class="form-control" placeholder="Your thoughts"/>
+        </div>
+<!--         <div class="form-group col-md-4">
+          <input name="sushi[user]"  class="form-control" placeholder="Posted By"/>
+        </div> -->
+<!--         <div class="form-group col-md-4">
+          <input name="sushi[ingredients]"  class="form-control" placeholder="Ingredient"/>
+        </div> -->
+        <div class="form-group col-md-4">
+          <button class="btn btn-success col-md-12">Add your sushi</button>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+
+  <ul>
+    <% sushis.forEach( function(sushi){ %>
+      <li>
+        <h2><%= sushi.sushi_name %></h2>
+        <ul>
+          <li><b>Comment :  </b> <%= sushi.comment %></li>
+          <li>
+            <% if (sushi.status == "favourite"){ %>
+              <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
+            <% } else { %>
+              <a href="/sushi/<%= sushi.id %>/favourite">favourite</a>
+            <% } %>
+          </li>
+        </ul>
+      </li>
+    <% }) %>
+  </ul>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  </body>
+</html>
