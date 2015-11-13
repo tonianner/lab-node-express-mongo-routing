@@ -4,6 +4,7 @@ var logger          = require('morgan');
 var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
 var expressLayouts  = require('express-ejs-layouts');
+var methodOverride  = require('method-override');
 
 var app    = express();
 var router = express.Router();
@@ -19,10 +20,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost/sushi');
 
 // EJS
+app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'))
 
 // development error handler
 // will print stacktrace

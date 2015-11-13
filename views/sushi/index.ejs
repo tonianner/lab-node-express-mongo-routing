@@ -16,30 +16,32 @@
 </div>
 
 <% sushis.forEach(function(sushi){ %>
-<div class="col-md-4">
-  <div class="panel panel-default">
+<div class="col-md-4 sushi-cards">
+  <div class="sushi-wrapper">
+    <div class="panel panel-default">
 
-    <div class="panel-heading">
-      <a href= "/sushi/<%= sushi.id%>" >
-        <h4><%= sushi.sushi_name %></h4>
-      </a>
-    </div>
+      <div class="panel-heading">
+        <a href= "/sushi/<%= sushi.id%>" >
+          <h4><%= sushi.sushi_name %></h4>
+        </a>
+      </div>
 
-    <div class="panel-body">
-      <ul>
-        <li><b>Comment :  </b> <%= sushi.comment %></li>
-        <li>
-          <% if (sushi.status == "favourite"){ %>
-            <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
-          <% } else { %>
-            <a href="/sushi/<%= sushi.id %>/favourite">favourite</a>
-          <% } %>
-        </li>
-      </ul>
+      <div class="panel-body sushi-body">
+        <ul>
+          <li><b>Comment :  </b> <%= sushi.comment %></li>
+          <li>
+            <% if (sushi.status == "favourite"){ %>
+              <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
+            <% } else { %>
+              <a href="/sushi/<%= sushi.id %>/favourite">favourite</a>
+            <% } %>
+          </li>
+        </ul>
 
-      <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
-        <button class="btn btn-warning">Delete</button>
-      </form>
+        <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
+          <button class="btn btn-warning">Delete</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

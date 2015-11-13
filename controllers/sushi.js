@@ -31,10 +31,19 @@ router.get('/sushi/:id', function(req, res){
   })
 });
 
-// Got to Edit page individual
+// Got to EDIT page individual
 router.get('/sushi/:id/edit', function(req, res){
   Sushi.findById(req.params.id, function(err, sushi) {
-    res.render('./sushi/edit', {sushi:sushi});
+    res.render('./sushi/edit', {sushi: sushi});
+  })
+});
+
+// UPDATE from EDIT page
+router.put("/sushi/:id", function(req, res){
+  Sushi.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
+    console.log(req.body.comment);
+    console.log(comment);
+    res.redirect('/sushi');
   })
 });
 
@@ -49,6 +58,7 @@ router.get('/sushi/:id/delete',function(req, res){
   });
 });
 
+// Update favourite and SUPER favourite
 router.get("/sushi/:id/favourite", function(req, res){
   Sushi.findByIdAndUpdate(req.params.id, {status: "favourite"}, function(err, sushi){
     res.redirect('/sushi');
