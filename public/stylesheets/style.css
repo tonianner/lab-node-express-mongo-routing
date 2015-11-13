@@ -1,9 +1,12 @@
 .sushi-wrapper{
-  height: 200px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .sushi-body{
-  height: 120px
+}
+
+.sushi-items{
+  flex-wrap: wrap;
+  display: flex;
 }
