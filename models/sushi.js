@@ -5,6 +5,8 @@ var userSchema = require('./user').schema
 var sushiSchema = new mongoose.Schema({
   sushi_name:   { type: String, unique: true },
   comment:      String,
+  where:        String,
+  user:         String,
   status:       { type: String, enum: ["favourite", "SUPER favourite"] },
 });
 

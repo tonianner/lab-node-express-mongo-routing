@@ -9,6 +9,9 @@
         <input name="sushi[comment]" class="form-control" rows="3" placeholder="Your thoughts"/>
       </div>
       <div class="form-group col-md-4">
+        <input name="sushi[where]" class="form-control" rows="3" placeholder="Where did you have it?"/>
+      </div>
+      <div class="form-group col-md-4">
         <button class="btn btn-success col-md-12">Add your sushi</button>
       </div>
     </form>
@@ -29,6 +32,7 @@
       <div class="panel-body sushi-body">
         <ul>
           <li><b>Comment :  </b> <%= sushi.comment %></li>
+          <li><b>Where :  </b> <%= sushi.where %></li>
           <li>
             <% if (sushi.status == "favourite"){ %>
               <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
