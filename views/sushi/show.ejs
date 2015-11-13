@@ -6,7 +6,8 @@
     </div>
     <div class="panel-body">
       <ul>
-        <li><b>Comment :  </b> <%= sushi.comment %></li>
+        <li class="showtext"><b>Comment :  </b> <%= sushi.comment %></li>
+        <li><b>Where :  </b> <%= sushi.where %></li>
         <li>
           <% if (sushi.status == "favourite"){ %>
             <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
@@ -17,7 +18,7 @@
       </ul>
 
       <a href= "/sushi/<%= sushi.id%>/edit" >
-        <h4>Edit</h4>
+        <h4>Edit Comment</h4>
       </a>
 
       <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
