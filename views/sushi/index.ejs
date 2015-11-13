@@ -36,6 +36,7 @@
       <div class="panel-body sushi-body">
         <ul>
           <li><b>Comment :  </b> <%= sushi.comment %></li>
+          <a href= "/sushi/<%= sushi.id%>/edit" >Edit Comment</a>
           <li><b>Where :  </b> <%= sushi.where %></li>
           <li>
             <% if (sushi.status == "favourite"){ %>
