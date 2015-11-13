@@ -24,9 +24,13 @@
     <div class="panel panel-default">
 
       <div class="panel-heading">
+        <a href= "/sushi/<%= sushi.id %>/delete" class="ion-close-circled pull-right"></a>
         <a href= "/sushi/<%= sushi.id%>" >
-          <h4><%= sushi.sushi_name %></h4>
+          <h4>
+            <%= sushi.sushi_name %>
+          </h4>
         </a>
+
       </div>
 
       <div class="panel-body sushi-body">
@@ -42,9 +46,6 @@
           </li>
         </ul>
 
-        <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
-          <button class="btn btn-warning">Delete</button>
-        </form>
       </div>
     </div>
   </div>

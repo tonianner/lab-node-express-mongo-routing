@@ -1,13 +1,9 @@
 .sushi-wrapper{
-  height: 300px;
+  height: 200px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .sushi-body{
-  height: 200px
-}
-
-.showtext{
-  font-size: 100px;
+  height: 150px
 }

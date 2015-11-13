@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
 mongoose.connect(mongoUri);
 
-// EJS
+// EJS, views, public
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);
@@ -29,7 +29,6 @@ app.set('view engine', 'ejs');
 app.use(methodOverride('_method'))
 
 // development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -41,7 +40,6 @@ if (app.get('env') === 'development') {
 }
 
 // production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
