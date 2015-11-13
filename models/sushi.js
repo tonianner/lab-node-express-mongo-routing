@@ -7,10 +7,16 @@ var sushiSchema = new mongoose.Schema({
   comment:      String,
   where:        String,
   user:         String,
-  status:       { type: String, enum: ["favourite", "SUPER favourite"] },
+  status:       { type: String, enum: ["favourite", "SUPER favourite"] }
+  // photoUrl
 });
 
 // CREATE MODEL
 var Sushi = mongoose.model('Sushi', sushiSchema);
 
 module.exports = Sushi;
+
+// sushiSchema.methods.showPhoto = function(){
+//   return '/img/' + this.photoUrl
+// }
+// <img src="<% sushi.showPhoto() %>">

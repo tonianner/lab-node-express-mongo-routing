@@ -8,10 +8,12 @@ var Sushi           = require('../models/sushi'),
 
 // index
 router.get("/sushi", function(req, res){
-    Sushi.find({}, function (err, sushis) {
-      res.render('sushi', { sushis: sushis });
-    });
-  })
+  Sushi.find({}, function (err, sushis) {
+    res.render('sushi', { sushis: sushis });
+  });
+})
+
+// Sushi.find({}).sort({status: -1}).exec(function(){})
 
 // create
 router.post("/sushi", function(req, res){
