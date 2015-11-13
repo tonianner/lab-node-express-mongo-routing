@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Mongoose stuff
 var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
-moongoose.connect(mongoUri);
+mongoose.connect(mongoUri);
 
 // EJS
 app.use(express.static(__dirname + '/public'));
