@@ -1,0 +1,30 @@
+
+<div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4><%= sushi.sushi_name %></h4>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li><b>Comment :  </b> <%= sushi.comment %></li>
+        <li>
+          <% if (sushi.status == "favourite"){ %>
+            <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
+          <% } else { %>
+            <a href="/sushi/<%= sushi.id %>/favourite">favourite</a>
+          <% } %>
+        </li>
+      </ul>
+
+      <a href= "/sushi/<%= sushi.id%>/edit" >
+        <h4>Edit</h4>
+      </a>
+
+      <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
+        <button class="btn btn-warning">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a href="./">Back</a>

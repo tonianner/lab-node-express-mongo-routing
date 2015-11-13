@@ -1,18 +1,11 @@
 var mongoose = require('mongoose');
-// var ingredientSchema = require('./ingredients').schema
+var userSchema = require('./user').schema
 
 // create a schema
 var sushiSchema = new mongoose.Schema({
-  sushi_name:   String,
+  sushi_name:   { type: String, required: true, unique: true },
   comment:      String,
-  // reference to user_id
-  // user:         [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-  // reference to embeded_schema
-  // ingredients:  [ingredientSchema],
   status:       { type: String, enum: ["favourite", "SUPER favourite"] },
-
-  created_at:   Date,
-  updated_at:   Date
 });
 
 // CREATE MODEL

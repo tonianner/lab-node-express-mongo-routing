@@ -2,11 +2,14 @@ var mongoose = require('mongoose');
 
 // create a schema
 var userSchema = new mongoose.Schema({
-  first_name:   String,
-  last_name:    String,
+  userName:   String,
+  comment:    String,
+  created_at: Date
 });
 
 // CREATE MODEL
-var User = mongoose.model('User', userSchema);
+var UserModel = mongoose.model('UserModel', userSchema);
 
-module.exports = User;
+module.exports.model = UserModel;
+module.exports.schema = userSchema;
+

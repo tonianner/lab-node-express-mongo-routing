@@ -4,15 +4,16 @@ var express         = require('express'),
     methodOverride  = require('method-override');
 
 var Sushi           = require('../models/sushi'),
-    User            = require('../models/user'),
-    IngredientModel = require('../models/ingredients').model;
+    User            = require('../models/user').model
 
+// index
 router.get("/sushi", function(req, res){
     Sushi.find({}, function (err, sushis) {
       res.render('sushi', { sushis: sushis });
     });
   })
 
+// create
 router.post("/sushi", function(req, res){
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
@@ -22,6 +23,31 @@ router.post("/sushi", function(req, res){
     }
   });
 })
+
+// SHOW individual
+router.get('/sushi/:id', function(req, res){
+  Sushi.findById(req.params.id, function(err, sushi) {
+    res.render('./sushi/show', {sushi:sushi});
+  })
+});
+
+// Got to Edit page individual
+router.get('/sushi/:id/edit', function(req, res){
+  Sushi.findById(req.params.id, function(err, sushi) {
+    res.render('./sushi/edit', {sushi:sushi});
+  })
+});
+
+// delete
+router.get('/sushi/:id/delete',function(req, res){
+  Sushi.findByIdAndRemove(req.params.id, function (err, sushi) {
+    if (err) {
+      res.send("something wrong happened"+ err)
+    } else {
+      res.redirect('/sushi');
+    }
+  });
+});
 
 router.get("/sushi/:id/favourite", function(req, res){
   Sushi.findByIdAndUpdate(req.params.id, {status: "favourite"}, function(err, sushi){
@@ -36,5 +62,3 @@ router.get("/sushi/:id/SUPER", function(req, res){
 });
 
 module.exports = router;
-
-
