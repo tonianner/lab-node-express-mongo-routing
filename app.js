@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Mongoose stuff
-mongoose.connect('mongodb://localhost/sushi');
+var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
+moongoose.connect(mongoUri);
 
 // EJS
 app.use(express.static(__dirname + '/public'));
@@ -51,5 +52,5 @@ app.use(function(err, req, res, next) {
 
 app.use(require('./controllers/sushi'));
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000 )
 console.log('Start getting hungry!!');
