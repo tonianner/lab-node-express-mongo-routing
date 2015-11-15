@@ -14,6 +14,10 @@ sushiSchema.methods.showPhoto = function(){
 }
 // <img src="<% sushi.showPhoto() %>">
 
+sushiSchema.methods.filterStatus = function(sushi){
+  return sushi;
+  console.log('i am ' + sushi)
+}
 
 // CREATE MODEL
 var Sushi = mongoose.model('Sushi', sushiSchema);

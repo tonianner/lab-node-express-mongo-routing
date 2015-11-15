@@ -4,8 +4,8 @@ a.navbar-brand {
   font-weight: bold;
 }
 
-aside {
-  display: block;
+.right-column{
+  position: relative;
 }
 
 .filter-img{

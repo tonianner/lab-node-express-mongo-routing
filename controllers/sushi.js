@@ -6,13 +6,11 @@ var express         = require('express'),
 
 // index
 router.get("/sushi", function(req, res){
-  Sushi.find({}, function (err, sushis) {
+  Sushi.find({}, function (err, sushi) {
     if (err){
       res.render('error', {err: err});
     } else {
-      res.render('sushi', { sushis: sushis });
-      // var filter = sushis.find({status: "SUPER favourite"})
-      // console.log(sushis);
+      res.render('sushi', { sushi: sushi });
     };
   })
 })
@@ -24,7 +22,6 @@ router.post("/sushi", function(req, res){
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
       res.render('error', {err: err});
-      // console.log(err.errors.comment)
     } else {
       res.redirect('/sushi');
     }
