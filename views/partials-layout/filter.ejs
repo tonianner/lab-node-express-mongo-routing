@@ -1,0 +1,19 @@
+<!-- Filter Panel - Left column -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      <span class="glyphicon glyphicon-filter"></span>
+      My SUPER favourites
+    </h1>
+  </div>
+
+  <div class="panel-body">
+    <% sushi.status.forEach(function(status){ %>
+      <img  class="img-responsive commenterImage"
+            onerror="this.src='./images/noImage.jpg'"
+            src="<%= sushiSuper.photoUrl %>"
+      />
+    <% }) %>
+  </ul>
+  </div>
+</div>

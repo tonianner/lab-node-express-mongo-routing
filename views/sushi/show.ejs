@@ -1,25 +1,59 @@
-<div class="sushi-profile-card">
-  <div class="container sushi-profile">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2><%= sushi.sushi_name %></h2>
-        <h3> (<%= sushi.status %>) </h3>
-      </div> <!-- panel-heading -->
 
-      <div class="panel-body">
+<a href="/sushi">Back</a>
+
+<div class="row">
+  <article class="col-xs-12">
+    <div class="media">
+      <!-- Sushi Image -->
+      <div class="pull-left">
+        <img  class="img-responsive img-thumbnail full-photo"
+              onerror="this.src='/images/noImage.jpg'"
+              src="<%= sushi.showPhoto() %>"
+        /> <!-- end of img -->
+      </div>
+
+      <div class="media-body">
+
+        <!-- Content -->
+        <h1 class="media-heading">
+          <a href= "/sushi/<%= sushi.id%>">
+            <%= sushi.sushi_name %>
+          </a>
+        </h1>
         <ul>
-          <li><b class="showtext">Comment :  </b> <%= sushi.comment %></li>
-          <li><b>Where :  </b> <%= sushi.where %></li>
+          <li><b>Comment :  </b> <%= sushi.comment %> </li>
+          <li><b>Where :  </b> <%= sushi.where %> </li>
         </ul>
 
-        <img class="img-thumbnail" src="<%= sushi.showPhoto() %>">
-
-        <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
-          <button class="btn btn-warning">Delete</button>
-        </form>
-      </div> <!-- panel-body -->
-    </div> <!-- panel panel-default -->
-
-    <a href="/sushi">Back</a>
-  </div>
+        <!-- Links -->
+        <ul class="list-unstyled"s>
+          <li>
+            <a href="/sushi/<%= sushi.id%>/edit">
+              <span class="glyphicon glyphicon-comment"></span>
+              Edit Comment
+            </a>
+          </li>
+          <li>
+            <% if (sushi.status == "favourite"){ %>
+              <a href="/sushi/<%= sushi.id %>/SUPER">
+                <i class="ion-heart"></i>
+                favourite
+              </a>
+            <% } else { %>
+                <a href="/sushi/<%= sushi.id %>/favourite">
+                  <i class="ion-heart"></i>
+                  <i class="ion-heart"></i>
+                  SUPER favourite
+                </a>
+            <% } %>
+          </li>
+          <li>
+            <a href= "/sushi/<%= sushi.id %>/delete">
+              <i class="ion-close-circled"></i> Delete Entry
+            </a>
+          </li>
+        </ul>
+      </div> <!-- media-body -->
+    </div> <!-- media -->
+  </article>
 </div>

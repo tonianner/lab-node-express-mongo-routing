@@ -6,8 +6,13 @@ var mongoose        = require('mongoose');
 var expressLayouts  = require('express-ejs-layouts');
 var methodOverride  = require('method-override');
 
+var flash  = require('connect-flash');
 var app    = express();
 var router = express.Router();
+
+// flash http://lookonmyworks.co.uk/2014/12/30/using-bootstrap-alerts-with-express-js-4/
+// can't seem to figure it out :(
+app.use(flash());
 
 // Morgan
 app.use(logger('dev'));
@@ -48,9 +53,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// router.get('/', function(req, res){
-//   res.redirect('sushi');
-// })
+router.get('/', function(req, res){
+  res.redirect('/sushi');
+})
+app.use(router);
 
 app.use(require('./controllers/sushi'));
 

@@ -1,15 +1,17 @@
 var express         = require('express'),
     router          = express.Router(),
     bodyParser      = require('body-parser'),
-    methodOverride  = require('method-override');
-
-var Sushi           = require('../models/sushi'),
-    User            = require('../models/user').model
+    methodOverride  = require('method-override'),
+    Sushi           = require('../models/sushi');
 
 // index
 router.get("/sushi", function(req, res){
   Sushi.find({}, function (err, sushis) {
-    res.render('sushi', { sushis: sushis });
+    if (err){
+      res.render('error', {err: err});
+    } else {
+      res.render('sushi', { sushis: sushis });
+    }
   });
 })
 
@@ -19,9 +21,10 @@ router.get("/sushi", function(req, res){
 router.post("/sushi", function(req, res){
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
-      res.render('error', {err: err})
+      res.render('error', {err: err});
       // console.log(err.errors.comment)
     } else {
+      req.flash('success', 'Comment Created');
       res.redirect('/sushi');
     }
   });
@@ -31,7 +34,7 @@ router.post("/sushi", function(req, res){
 router.get('/sushi/:id', function(req, res){
   Sushi.findById(req.params.id, function(err, sushi) {
     if (err){
-      res.render('error', {err: err})
+      res.render('error', {err: err});
     } else {
       res.render('./sushi/show', {sushi:sushi});
     }
@@ -42,7 +45,7 @@ router.get('/sushi/:id', function(req, res){
 router.get('/sushi/:id/edit', function(req, res){
   Sushi.findById(req.params.id, function(err, sushi) {
     if (err){
-      res.render('error', {err: err})
+      res.render('error', {err: err});
     } else {
       res.render('./sushi/edit', {sushi: sushi});
     }
@@ -62,7 +65,7 @@ router.put("/sushi/:id", function(req, res){
 router.get('/sushi/:id/delete',function(req, res){
   Sushi.findByIdAndRemove(req.params.id, function (err, sushi) {
     if (err){
-      res.render('error', {err: err})
+      res.render('error', {err: err});
     } else {
       res.redirect('/sushi');
     }

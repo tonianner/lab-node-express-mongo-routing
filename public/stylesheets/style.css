@@ -8,14 +8,19 @@ aside {
   display: block;
 }
 
+.content-body,
 .sushi-profile-card,
-.error,
-.intro-header
+.error
 {
+  padding-top: 20px;
+}
+
+.center-column{
   padding-top: 50px;
 }
 
 .intro-header {
+  padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
   color: #f8f8f8;
@@ -44,27 +49,20 @@ aside {
   text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
-.sushi-items{
-  flex-wrap: wrap;
-  display: flex;
-}
-
-.sushi-profile {
-  padding-top: 30px;
-}
-
 .commenterImage {
-    width:100px;
-    margin-right:5px;
-    height:auto;
-    float:left;
-    position: relative;
+  width:100px;
+  margin-right:5px;
+  height:auto;
+  float:left;
+  position: relative;
+}
+
+.full-photo {
+  width: 500px;
+  height: auto;
 }
 
 .media-left{
   width:120px;
   height:120px;
 }
-/*.commenterImage img {
-    width:100%;
-}*/

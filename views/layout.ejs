@@ -10,20 +10,25 @@
 
   <body>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/sushi">SUSHI</a>
-        </div> <!-- navbar-header -->
-        <div>
-          <ul class="nav navbar-nav">
-            <li><a href="#show-sushi">Go to Sushi</a></li>
-          </ul>
-        </div>
-      </div> <!-- container -->
-    </nav>
+    <% include ./partials-layout/navbar %>
 
-    <%- body %>
+    <!-- Header -->
+    <% include ./partials-layout/header %>
+
+    <!-- Content -->
+    <div class="container-fluid content-body">
+      <div>
+        <!-- Left Column -->
+        <div class="col-sm-3">
+          <% include ./partials-layout/form %>
+        </div>
+
+        <!-- Center Column -->
+        <div class="col-sm-9 center-column">
+          <%- body %>
+        </div>
+     </div>
+   </div>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
