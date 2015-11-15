@@ -1,56 +1,17 @@
-<div class="well">
-  <fieldset>
-    <legend>Add your Favourite Sushi</legend>
-    <form action='/sushi' method='post'>
-      <div class="form-group col-md-4">
-        <input name="sushi[sushi_name]" class="form-control" placeholder="*Name your Sushi"/>
-      </div>
-      <div class="form-group col-md-4">
-        <input name="sushi[comment]" class="form-control" rows="3" placeholder="Your thoughts"/>
-      </div>
-      <div class="form-group col-md-4">
-        <input name="sushi[where]" class="form-control" rows="3" placeholder="Where did you have it?"/>
-      </div>
-      <div class="form-group col-md-4">
-        <button class="btn btn-success col-md-12">Add your sushi</button>
-      </div>
-    </form>
-  </fieldset>
+<% include ./partials/header %>
+
+<div class="container">
+  <h1>Sushi Lovers</h1>
 </div>
 
-<div class="container sushi-items">
-  <% sushis.forEach(function(sushi){ %>
-  <div class="col-md-4 sushi-cards">
-    <div class="sushi-wrapper">
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
-          <a href= "/sushi/<%= sushi.id %>/delete"><span class="ion-close-circled pull-right"></span></a>
-          <a href= "/sushi/<%= sushi.id%>" >
-            <h4>
-              <%= sushi.sushi_name %>
-            </h4>
-          </a>
-
-        </div>
-
-        <div class="panel-body sushi-body">
-          <ul>
-            <li><b>Comment :  </b> <%= sushi.comment %></li>
-            <a href= "/sushi/<%= sushi.id%>/edit" >Edit Comment</a>
-            <li><b>Where :  </b> <%= sushi.where %></li>
-            <li>
-              <% if (sushi.status == "favourite"){ %>
-                <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
-              <% } else { %>
-                <a href="/sushi/<%= sushi.id %>/favourite">favourite</a>
-              <% } %>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
+<div class="container-fluid">
+  <!-- Left Column -->
+  <div class="col-sm-3">
+    <% include ./partials/form %>
   </div>
-  <% }) %>
+
+  <!-- Center Column -->
+  <div class="col-sm-9">
+    <% include ./partials/populateSushi %>
+  </div>
 </div>

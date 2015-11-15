@@ -1,12 +1,70 @@
-.sushi-wrapper{
-  padding: 10px;
-  margin-bottom: 10px;
+a.navbar-brand {
+  color: white !important;
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.4);
+  font-weight: bold;
 }
 
-.sushi-body{
+aside {
+  display: block;
+}
+
+.sushi-profile-card,
+.error,
+.intro-header
+{
+  padding-top: 50px;
+}
+
+.intro-header {
+  padding-bottom: 50px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(http://okashi.msol1.com/wp-content/uploads/2015/02/sushi05.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.intro-message {
+  position: relative;
+  padding-top: 10%;
+}
+
+.intro-message > h1 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  font-size: 5em;
+}
+
+.intro-divider {
+  width: 400px;
+  border-top: 1px solid #f8f8f8;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
 .sushi-items{
   flex-wrap: wrap;
   display: flex;
 }
+
+.sushi-profile {
+  padding-top: 30px;
+}
+
+.commenterImage {
+    width:100px;
+    margin-right:5px;
+    height:auto;
+    float:left;
+    position: relative;
+}
+
+.media-left{
+  width:120px;
+  height:120px;
+}
+/*.commenterImage img {
+    width:100%;
+}*/

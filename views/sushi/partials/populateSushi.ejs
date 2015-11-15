@@ -1,0 +1,60 @@
+<!-- Articles -->
+<% sushis.forEach(function(sushi){ %>
+  <div class="row">
+    <article class="col-xs-12">
+      <div class="media">
+
+        <div class="pull-left">
+          <img  class="img-responsive commenterImage"
+                  onerror="this.src='./images/noImage.jpg'"
+                  src="<%= sushi.showPhoto() %>"
+            /> <!-- end of img -->
+        </div>
+
+        <div class="media-body">
+
+          <!-- Content -->
+          <h2 class="media-heading">
+            <a href= "/sushi/<%= sushi.id%>">
+              <h4>
+                <%= sushi.sushi_name %>
+              </h4>
+            </a>
+          </h2>
+          <ul>
+            <li><b>Comment :  </b> <%= sushi.comment %> </li>
+            <a href= "/sushi/<%= sushi.id%>/edit" >Edit Comment</a>
+            <li><b>Where :  </b> <%= sushi.where %> </li>
+          </ul>
+
+        <!-- Edit Link -->
+        <ul class="list-inline">
+          <li>
+            <a href="#"><span class="glyphicon glyphicon-comment"></span> Edit Comment</a>
+          </li>
+          <li>
+            <% if (sushi.status == "favourite"){ %>
+              <a href="/sushi/<%= sushi.id %>/SUPER">
+                <i class="ion-heart"></i>
+                <i class="ion-heart"></i>
+                SUPER favourite
+              </a>
+            <% } else { %>
+                <a href="/sushi/<%= sushi.id %>/favourite">
+                  <i class="ion-heart"></i>
+                  favourite
+                </a>
+            <% } %>
+          </li>
+          <li>
+            <a href= "/sushi/<%= sushi.id %>/delete">
+              <i class="ion-close-circled"></i> Delete Entry
+            </a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+  <hr>
+<% }) %>

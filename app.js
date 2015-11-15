@@ -48,6 +48,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// router.get('/', function(req, res){
+//   res.redirect('sushi');
+// })
 
 app.use(require('./controllers/sushi'));
 

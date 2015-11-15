@@ -1,31 +1,25 @@
+<div class="sushi-profile-card">
+  <div class="container sushi-profile">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2><%= sushi.sushi_name %></h2>
+        <h3> (<%= sushi.status %>) </h3>
+      </div> <!-- panel-heading -->
 
-<div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4><%= sushi.sushi_name %></h4>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li><b class="showtext">Comment :  </b> <%= sushi.comment %></li>
-        <li><b>Where :  </b> <%= sushi.where %></li>
-        <li>
-          <% if (sushi.status == "favourite"){ %>
-            <a href="/sushi/<%= sushi.id %>/SUPER">SUPER favourite</a>
-          <% } else { %>
-            <a href="/sushi/<%= sushi.id %>/favourite">favourite</a>
-          <% } %>
-        </li>
-      </ul>
+      <div class="panel-body">
+        <ul>
+          <li><b class="showtext">Comment :  </b> <%= sushi.comment %></li>
+          <li><b>Where :  </b> <%= sushi.where %></li>
+        </ul>
 
-      <a href= "/sushi/<%= sushi.id%>/edit" >
-        <h4>Edit Comment</h4>
-      </a>
+        <img class="img-thumbnail" src="<%= sushi.showPhoto() %>">
 
-      <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
-        <button class="btn btn-warning">Delete</button>
-      </form>
-    </div>
+        <form action= '/sushi/<%= sushi.id %>/delete' method='get'>
+          <button class="btn btn-warning">Delete</button>
+        </form>
+      </div> <!-- panel-body -->
+    </div> <!-- panel panel-default -->
+
+    <a href="/sushi">Back</a>
   </div>
 </div>
-
-<a href="/sushi">Back</a>

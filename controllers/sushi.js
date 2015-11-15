@@ -19,7 +19,8 @@ router.get("/sushi", function(req, res){
 router.post("/sushi", function(req, res){
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
-      res.send("something wrong happened"+ err)
+      res.render('error', {err: err})
+      // console.log(err.errors.comment)
     } else {
       res.redirect('/sushi');
     }
@@ -29,14 +30,22 @@ router.post("/sushi", function(req, res){
 // SHOW individual
 router.get('/sushi/:id', function(req, res){
   Sushi.findById(req.params.id, function(err, sushi) {
-    res.render('./sushi/show', {sushi:sushi});
+    if (err){
+      res.render('error', {err: err})
+    } else {
+      res.render('./sushi/show', {sushi:sushi});
+    }
   })
 });
 
 // Got to EDIT page individual
 router.get('/sushi/:id/edit', function(req, res){
   Sushi.findById(req.params.id, function(err, sushi) {
-    res.render('./sushi/edit', {sushi: sushi});
+    if (err){
+      res.render('error', {err: err})
+    } else {
+      res.render('./sushi/edit', {sushi: sushi});
+    }
   })
 });
 
@@ -52,8 +61,8 @@ router.put("/sushi/:id", function(req, res){
 // delete
 router.get('/sushi/:id/delete',function(req, res){
   Sushi.findByIdAndRemove(req.params.id, function (err, sushi) {
-    if (err) {
-      res.send("something wrong happened"+ err)
+    if (err){
+      res.render('error', {err: err})
     } else {
       res.redirect('/sushi');
     }

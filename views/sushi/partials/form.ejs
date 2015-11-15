@@ -1,0 +1,35 @@
+<!-- Form Panel -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      <span class="glyphicon glyphicon-heart-empty"></span>
+      Add your Favourite Sushi
+    </h1>
+  </div>
+
+  <div class="panel-body">
+    <fieldset>
+      <legend>Add your Favourite Sushi</legend>
+      <form action='/sushi' method='post'>
+        <div class="form-group">
+          <input name="sushi[sushi_name]" class="form-control" placeholder="*Name your Sushi"/>
+        </div>
+        <div class="form-group">
+          <input name="sushi[where]" class="form-control" placeholder="Where did you have it?"/>
+        </div>
+
+        <div class="form-group">
+          <input name="sushi[photoUrl]" class="form-control" placeholder="http://www.yourphoto.png"/>
+        </div>
+
+        <div class="form-group">
+          <textarea name="sushi[comment]" class="form-control" rows="4" placeholder="*Your thoughts"></textarea>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-success col-md-12">Add your sushi</button>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+</div>
