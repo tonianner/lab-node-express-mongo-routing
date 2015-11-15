@@ -8,6 +8,11 @@ aside {
   display: block;
 }
 
+.filter-img{
+  flex-wrap: wrap;
+  display: flex;
+}
+
 .content-body,
 .sushi-profile-card,
 .error

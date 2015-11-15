@@ -8,12 +8,18 @@
   </div>
 
   <div class="panel-body">
-    <% sushi.status.forEach(function(status){ %>
-      <img  class="img-responsive commenterImage"
-            onerror="this.src='./images/noImage.jpg'"
-            src="<%= sushiSuper.photoUrl %>"
-      />
-    <% }) %>
-  </ul>
+    <div class="col-xs-12 filter-img">
+      <% for (var i in sushis){ %>
+        <% if (sushis[i].status == "SUPER favourite"){ %>
+          <div>
+            <img  class="img-responsive commenterImage"
+                  onerror="this.src='./images/noImage.jpg'"
+                  src="<%= sushis[i].photoUrl %>"
+            />
+          </div>
+        <% } %>
+      <% } %>
+    </div>
   </div>
 </div>
+

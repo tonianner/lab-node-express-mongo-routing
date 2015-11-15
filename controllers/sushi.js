@@ -11,8 +11,10 @@ router.get("/sushi", function(req, res){
       res.render('error', {err: err});
     } else {
       res.render('sushi', { sushis: sushis });
-    }
-  });
+      // var filter = sushis.find({status: "SUPER favourite"})
+      // console.log(sushis);
+    };
+  })
 })
 
 // Sushi.find({}).sort({status: -1}).exec(function(){})
@@ -24,7 +26,6 @@ router.post("/sushi", function(req, res){
       res.render('error', {err: err});
       // console.log(err.errors.comment)
     } else {
-      req.flash('success', 'Comment Created');
       res.redirect('/sushi');
     }
   });
