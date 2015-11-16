@@ -6,7 +6,8 @@ var sushiSchema = new mongoose.Schema({
   comment:      { type: String, required: true},
   where:        String,
   status:       { type: String, enum: ["favourite", "SUPER favourite"], default: "favourite" },
-  photoUrl:     String
+  photoUrl:     String,
+  date:         { type: Date, default: Date.now}
 });
 
 sushiSchema.methods.showPhoto = function(){

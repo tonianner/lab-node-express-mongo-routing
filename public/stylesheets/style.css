@@ -1,5 +1,5 @@
 body{
-  font-family: 'Amita', cursive;
+
 }
 
 a.navbar-brand {
@@ -63,6 +63,7 @@ a.navbar-brand {
 .commenterImage {
   width:100px;
   margin-right:5px;
+  margin-bottom: 5px;
   height:auto;
   float:left;
   position: relative;
@@ -80,6 +81,14 @@ a.navbar-brand {
 
 .populate-sushiname{
   font-size: 28px;
+}
+
+.panel-heading,
+.populate-sushiname,
+.navbar-brand,
+h1
+{
+  font-family: 'Amita';
 }
 
 @media only screen and (max-width: 800px) {

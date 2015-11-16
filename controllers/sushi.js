@@ -6,7 +6,7 @@ var express         = require('express'),
 
 // index
 router.get("/sushi", function(req, res){
-  Sushi.find({}, function (err, sushi) {
+  Sushi.find({}).sort({date: -1}).exec(function (err, sushi) {
     if (err){
       res.render('error', {err: err});
     } else {
@@ -14,8 +14,6 @@ router.get("/sushi", function(req, res){
     };
   })
 })
-
-// Sushi.find({}).sort({status: -1}).exec(function(){})
 
 // create
 router.post("/sushi", function(req, res){
