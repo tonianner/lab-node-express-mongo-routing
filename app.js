@@ -6,11 +6,20 @@ var mongoose        = require('mongoose');
 var expressLayouts  = require('express-ejs-layouts');
 var methodOverride  = require('method-override');
 
-var app    = express();
-// var router = express.Router();
+var passport     = require('passport');
+var flash        = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
 
 var routes = require('./config/routes');
+var app    = express();
+require('./config/passport')(passport);
 
+// Mongoose stuff
+var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
+mongoose.connect(mongoUri);
+
+// link_to
 var helpers    = require('express-helpers');
 helpers(app);
 
@@ -21,10 +30,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Mongoose stuff
-var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
-mongoose.connect(mongoUri);
-
 // EJS, views, public
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +37,11 @@ app.use(expressLayouts);
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'))
+
+// app.use(session({ secret: 'WDI-GENERAL-ASSEMBLY-EXPRESS' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // development error handler
 if (app.get('env') === 'development') {
@@ -53,12 +63,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// router.get('/', function(req, res){
-//   res.redirect('/sushi');
-// })
-app.use(routes);
+app.use(function (req, res, next) {
+  global.user = req.user;
+  next()
+});
 
-// app.use(require('./controllers/sushi'));
+app.use(routes);
 
 app.listen(process.env.PORT || 3000 )
 console.log('Start getting hungry!!');
