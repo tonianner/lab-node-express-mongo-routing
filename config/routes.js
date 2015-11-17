@@ -41,18 +41,18 @@ router.route('/sushi/:id/SUPER')
   .get(sushiController.getSuperFav)
 
 // logging in
-router.route('/sushi/signup')
+router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup);
 
-router.route('/sushi/login')
+router.route('/login')
   .get(usersController.getLogin)
   .post(usersController.postLogin);
 
-router.route("/sushi/logout")
+router.route("/logout")
   .get(usersController.getLogout);
 
-router.route("/sushi/secret")
-  .get(authenticatedUser, usersController.secret);
+// router.route("/sushi/secret")
+//   .get(authenticatedUser, usersController.secret);
 
 module.exports = router;

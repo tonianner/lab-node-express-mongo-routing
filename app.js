@@ -13,7 +13,6 @@ var session      = require('express-session');
 
 var routes = require('./config/routes');
 var app    = express();
-require('./config/passport')(passport);
 
 // Mongoose stuff
 var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
@@ -38,7 +37,7 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'))
 
-// app.use(session({ secret: 'WDI-GENERAL-ASSEMBLY-EXPRESS' }));
+app.use(session());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -63,10 +62,13 @@ app.use(function(err, req, res, next) {
   });
 });
 
+require('./config/passport')(passport);
+
 app.use(function (req, res, next) {
   global.user = req.user;
   next()
 });
+
 
 app.use(routes);
 
