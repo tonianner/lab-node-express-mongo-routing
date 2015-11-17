@@ -1,22 +1,18 @@
-var express         = require('express'),
-    router          = express.Router(),
-    bodyParser      = require('body-parser'),
-    methodOverride  = require('method-override'),
-    Sushi           = require('../models/sushi');
+var Sushi = require('../models/sushi')
 
-// index
-router.get("/sushi", function(req, res){
-  Sushi.find({}).sort({date: -1}).exec(function (err, sushi) {
+// GET // index
+function getAll(req, res) {
+    Sushi.find({}).sort({date: -1}).exec(function (err, sushi) {
     if (err){
       res.render('error', {err: err});
     } else {
       res.render('sushi', { sushi: sushi });
     };
   })
-})
+}
 
-// create
-router.post("/sushi", function(req, res){
+// POST // create
+function createSushi(req, res) {
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
       res.render('error', {err: err});
@@ -24,10 +20,10 @@ router.post("/sushi", function(req, res){
       res.redirect('/sushi');
     }
   });
-})
+}
 
-// SHOW individual
-router.get('/sushi/:id', function(req, res){
+// GET // Show individual
+function getSushi(req, res) {
   Sushi.findById(req.params.id, function(err, sushi) {
     if (err){
       res.render('error', {err: err});
@@ -35,10 +31,10 @@ router.get('/sushi/:id', function(req, res){
       res.render('./sushi/show', {sushi:sushi});
     }
   })
-});
+}
 
-// Got to EDIT page individual
-router.get('/sushi/:id/edit', function(req, res){
+// GET // Got to EDIT page individual
+function getSushiEdit(req, res) {
   Sushi.findById(req.params.id, function(err, sushi) {
     if (err){
       res.render('error', {err: err});
@@ -46,19 +42,18 @@ router.get('/sushi/:id/edit', function(req, res){
       res.render('./sushi/edit', {sushi: sushi});
     }
   })
-});
+}
 
-// UPDATE from EDIT page
-router.put("/sushi/:id", function(req, res){
-  Sushi.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
+// PUT /// UPDATE from EDIT page
+function updateSushi(req, res) {
+    Sushi.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
     console.log(req.body.comment);
     console.log(comment);
     res.redirect('/sushi');
   })
-});
+}
 
-// delete
-router.get('/sushi/:id/delete',function(req, res){
+function removeSushi(req, res) {
   Sushi.findByIdAndRemove(req.params.id, function (err, sushi) {
     if (err){
       res.render('error', {err: err});
@@ -66,19 +61,108 @@ router.get('/sushi/:id/delete',function(req, res){
       res.redirect('/sushi');
     }
   });
-});
+}
 
 // Update favourite and SUPER favourite
-router.get("/sushi/:id/favourite", function(req, res){
+function getFavSushi(req, res){
   Sushi.findByIdAndUpdate(req.params.id, {status: "favourite"}, function(err, sushi){
     res.redirect('/sushi');
   })
-});
+}
 
-router.get("/sushi/:id/SUPER", function(req, res){
+function getSuperFav(req, res){
   Sushi.findByIdAndUpdate(req.params.id, {status: "SUPER favourite"}, function(err, sushi){
     res.redirect('/sushi');
   })
-});
+}
 
-module.exports = router;
+
+module.exports = {
+  getAll      : getAll,
+  createSushi : createSushi,
+  getSushi    : getSushi,
+  getSushiEdit: getSushiEdit,
+  updateSushi : updateSushi,
+  removeSushi : removeSushi,
+  getFavSushi : getFavSushi,
+  getSuperFav : getSuperFav
+};
+
+// // index
+// router.get("/sushi", function(req, res){
+//   Sushi.find({}).sort({date: -1}).exec(function (err, sushi) {
+//     if (err){
+//       res.render('error', {err: err});
+//     } else {
+//       res.render('sushi', { sushi: sushi });
+//     };
+//   })
+// })
+
+// // create
+// router.post("/sushi", function(req, res){
+//   Sushi.create(req.body.sushi, function (err, sushi) {
+//     if (err){
+//       res.render('error', {err: err});
+//     } else {
+//       res.redirect('/sushi');
+//     }
+//   });
+// })
+
+// // SHOW individual
+// router.get('/sushi/:id', function(req, res){
+//   Sushi.findById(req.params.id, function(err, sushi) {
+//     if (err){
+//       res.render('error', {err: err});
+//     } else {
+//       res.render('./sushi/show', {sushi:sushi});
+//     }
+//   })
+// });
+
+// // Got to EDIT page individual
+// router.get('/sushi/:id/edit', function(req, res){
+//   Sushi.findById(req.params.id, function(err, sushi) {
+//     if (err){
+//       res.render('error', {err: err});
+//     } else {
+//       res.render('./sushi/edit', {sushi: sushi});
+//     }
+//   })
+// });
+
+// // UPDATE from EDIT page
+// router.put("/sushi/:id", function(req, res){
+//   Sushi.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
+//     console.log(req.body.comment);
+//     console.log(comment);
+//     res.redirect('/sushi');
+//   })
+// });
+
+// // delete
+// router.get('/sushi/:id/delete',function(req, res){
+//   Sushi.findByIdAndRemove(req.params.id, function (err, sushi) {
+//     if (err){
+//       res.render('error', {err: err});
+//     } else {
+//       res.redirect('/sushi');
+//     }
+//   });
+// });
+
+// // Update favourite and SUPER favourite
+// router.get("/sushi/:id/favourite", function(req, res){
+//   Sushi.findByIdAndUpdate(req.params.id, {status: "favourite"}, function(err, sushi){
+//     res.redirect('/sushi');
+//   })
+// });
+
+// router.get("/sushi/:id/SUPER", function(req, res){
+//   Sushi.findByIdAndUpdate(req.params.id, {status: "SUPER favourite"}, function(err, sushi){
+//     res.redirect('/sushi');
+//   })
+// });
+
+// module.exports = router;
