@@ -37,7 +37,11 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'))
 
-app.use(session());
+app.use(session({
+    secret: 'WDI-GENERAL-ASSEMBLY-EXPRESS',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

@@ -52,7 +52,7 @@ router.route('/login')
 router.route("/logout")
   .get(usersController.getLogout);
 
-// router.route("/sushi/secret")
-//   .get(authenticatedUser, usersController.secret);
+router.route("/sushi/secret")
+  .get(authenticatedUser, usersController.secret);
 
 module.exports = router;

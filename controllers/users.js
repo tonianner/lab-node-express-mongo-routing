@@ -2,7 +2,7 @@ var passport = require("passport");
 
 // GET /signup
 function getSignup(request, response) {
-  response.render('signup.ejs', { message: request.flash('signupMessage') });
+  response.render('sushi/signup.ejs', { message: request.flash('signupMessage') });
 }
 
 // POST /signup
@@ -17,7 +17,7 @@ function postSignup(request, response) {
 
 // GET /login
 function getLogin(request, response) {
-  response.render('login.ejs', { message: request.flash('loginMessage') });
+  response.render('sushi/login.ejs', { message: request.flash('loginMessage') });
 }
 
 // POST /login
@@ -37,15 +37,15 @@ function getLogout(request, response) {
 }
 
 // Restricted page
-// function secret(request, response){
-//   response.render('secret.ejs');
-// }
+function secret(request, response){
+  response.render('secret.ejs');
+}
 
 module.exports = {
   getLogin: getLogin,
   postLogin: postLogin ,
   getSignup: getSignup,
   postSignup: postSignup,
-  getLogout: getLogout
-  // secret: secret
+  getLogout: getLogout,
+  secret: secret
 };
