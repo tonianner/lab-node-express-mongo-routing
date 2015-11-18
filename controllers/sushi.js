@@ -16,8 +16,11 @@ function createSushi(req, res) {
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
       res.render('error', {err: err});
+      // req.flash({ message: req.flash('Required Sushi Name and Comment') })
+      // req.flash('error', 'error, input Sushi name and Comment');
     } else {
-      res.redirect('/sushi');
+      res.redirect('/sushi')
+      // res.redirect('/sushi', { message: req.flash('Aded your sushi') })
     }
   });
 }

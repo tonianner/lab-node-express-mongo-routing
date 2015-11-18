@@ -19,7 +19,7 @@ var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/sushi';
 mongoose.connect(mongoUri);
 
 // link_to
-var helpers    = require('express-helpers');
+var helpers = require('express-helpers');
 helpers(app);
 
 // Morgan
@@ -44,6 +44,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(flash());
 
 // development error handler
