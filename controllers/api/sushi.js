@@ -6,11 +6,11 @@ var express         = require('express'),
 
 // index
 router.get("/sushi", function(req, res){
-  Sushi.find({}, function (err, sushis) {
+  Sushi.find({}, function (err, sushi) {
     if (err){
       res.send("something wrong happened " + err )
     } else {
-      res.send(sushis);
+      res.send(sushi);
     }
   });
 })

@@ -2,7 +2,11 @@ var passport = require("passport");
 
 // GET /signup
 function getSignup(request, response) {
-  response.render('sushi/signup.ejs', { message: request.flash('signupMessage') });
+  response.render('sushi/signup.ejs', {
+    message: request.flash('signupMessage'),
+    error: request.flash('error'),
+    success: request.flash('success')
+  });
 }
 
 // POST /signup
@@ -17,7 +21,11 @@ function postSignup(request, response) {
 
 // GET /login
 function getLogin(request, response) {
-  response.render('sushi/login.ejs', { message: request.flash('loginMessage') });
+  response.render('sushi/login.ejs', {
+    message: request.flash('loginMessage'),
+    error: request.flash('error'),
+    success: request.flash('success')
+  });
 }
 
 // POST /login

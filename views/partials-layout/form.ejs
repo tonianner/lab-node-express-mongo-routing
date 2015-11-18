@@ -11,6 +11,14 @@
 
   <div class="panel-body">
 
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <% if (success && success.length > 0) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+
     <fieldset>
       <legend>Add your Favourite Sushi</legend>
       <form action='/sushi' method='post'>

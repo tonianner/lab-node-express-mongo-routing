@@ -45,6 +45,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// FLASH message
 app.use(flash());
 
 // development error handler
@@ -76,6 +77,7 @@ app.use(function (req, res, next) {
 
 
 app.use(routes);
+// app.use('/api', routes)
 
 app.listen(process.env.PORT || 3000 )
 console.log('Start getting hungry!!');

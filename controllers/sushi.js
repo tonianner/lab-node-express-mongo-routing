@@ -1,4 +1,6 @@
 var Sushi = require('../models/sushi')
+var flash = require('connect-flash');
+
 
 // GET // index
 function getAll(req, res) {
@@ -6,7 +8,7 @@ function getAll(req, res) {
     if (err){
       res.render('error', {err: err});
     } else {
-      res.render('sushi', { sushi: sushi });
+      res.render('sushi', { sushi: sushi, error: req.flash('error'), success: req.flash('success') });
     };
   })
 }
@@ -15,13 +17,11 @@ function getAll(req, res) {
 function createSushi(req, res) {
   Sushi.create(req.body.sushi, function (err, sushi) {
     if (err){
-      res.render('error', {err: err});
-      // req.flash({ message: req.flash('Required Sushi Name and Comment') })
-      // req.flash('error', 'error, input Sushi name and Comment');
+      req.flash('error', 'Sushi name and comment are required input');
     } else {
-      res.redirect('/sushi')
-      // res.redirect('/sushi', { message: req.flash('Aded your sushi') })
+      req.flash('success', 'Added your sushi');
     }
+    res.redirect('/sushi');
   });
 }
 
@@ -31,7 +31,7 @@ function getSushi(req, res) {
     if (err){
       res.render('error', {err: err});
     } else {
-      res.render('./sushi/show', {sushi:sushi});
+      res.render('./sushi/show', { sushi: sushi, error: req.flash('error'), success: req.flash('success') });
     }
   })
 }
@@ -42,7 +42,7 @@ function getSushiEdit(req, res) {
     if (err){
       res.render('error', {err: err});
     } else {
-      res.render('./sushi/edit', {sushi: sushi});
+      res.render('./sushi/edit', { sushi: sushi, error: req.flash('error'), success: req.flash('success') });
     }
   })
 }
@@ -52,7 +52,7 @@ function updateSushi(req, res) {
     Sushi.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
     console.log(req.body.comment);
     console.log(comment);
-    res.redirect('/sushi');
+    res.redirect('/sushi', { sushi: sushi, error: req.flash('error'), success: req.flash('success') });
   })
 }
 
